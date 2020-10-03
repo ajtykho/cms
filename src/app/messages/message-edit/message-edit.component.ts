@@ -10,7 +10,7 @@ export class MessageEditComponent implements OnInit {
 
  @ViewChild('subject') subject: ElementRef;
  @ViewChild('msgText') msgText: ElementRef;
- @Output() addMessageEvent = new EventEmitter<Message>{}; 
+ @Output() addMessageEvent = new EventEmitter<Message>(); 
  currentSender = 'Ali Tykhomyrova'
  
   constructor() { }
@@ -25,7 +25,7 @@ export class MessageEditComponent implements OnInit {
     const message = new Message(
       '1',
       subjectValue,
-      msgtextValue,
+      msgTextValue,
       this.currentSender);
 
     this.addMessageEvent.emit(message);
