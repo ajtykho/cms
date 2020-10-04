@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageEditComponent } from '../message-edit/message-edit.component';
 import { Message } from '../message.model'
 
 
 @Component({
   selector: 'cms-message-list',
   templateUrl: './message-list.component.html',
-  styleUrls: ['./message-list.component.css']
+  styleUrls: ['./message-list.component.css'],
 })
 export class MessageListComponent implements OnInit {
   messages: Message[] = [
@@ -19,8 +20,12 @@ export class MessageListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onAddMessage(message: Message) {
-    this.messages.push(message);
+  onAddMessage(id: string, subject: string, msgText: string, sender: string) {
+    this.messages.push(new Message(id, subject, msgText, sender));
+  }
+
+  addMessageEvent(e) {
+    this.messages.push(e);
   }
 
 }

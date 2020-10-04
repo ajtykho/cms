@@ -16,7 +16,8 @@
                 </div>
             </div>
             <div class="panel-footer">
-                <!--Add tag to load the MessageEditComponent-->
+                <cms-message-edit (addMessageEvent)="addMessageEvent($event)"></cms-message-edit> <!--HELP-->
+                <!-- <cms-message-edit (click)="onAddMessage('1', 'Subject 1', 'Message Text 1', 'Ali Tykhomyrova')"></cms-message-edit> HELP -->
              </div>
         </div>
     </div>

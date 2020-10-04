@@ -29,7 +29,7 @@ export class MessageEditComponent implements OnInit {
       this.currentSender);
 
     this.addMessageEvent.emit(message);
-
+      console.log(message);
     this.onClear();
   }
 
