@@ -7,7 +7,9 @@ import { Contact } from '../contact.model';
   styleUrls: ['./contact-list.component.css']
 })
 export class ContactListComponent implements OnInit {
+
   constructor() { }
+  
 @Output() selectedContactEvent = new EventEmitter<Contact>();
 
   contacts: Contact[] = [
