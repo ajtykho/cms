@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {DocumentService } from './document.service';
 
 @Component({
   selector: 'cms-documents',
@@ -9,9 +10,16 @@ export class DocumentsComponent implements OnInit {
 
   selectedDocument: Document;
 
-  constructor() { }
+  constructor(private DocumentService: DocumentService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.DocumentService.documentSelectedEvent.subscribe(
+      (documents: Document) => {
+        this.selectedDocument = document;
+      });
   }
-
 }
+
+
+
+
