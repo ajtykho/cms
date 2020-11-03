@@ -14,8 +14,12 @@ import { DocumentsComponent } from './documents/documents.component';
 import { ContactItemComponent } from './contacts/contact-item/contact-item.component';
 import { DocumentListComponent } from './documents/document-list/document-list.component';
 import { DocumentItemComponent } from './documents/document-item/document-item.component';
-//import { DocumentDetailComponent } from './documents/document-detail/document-detail.component';
+import { DocumentDetailComponent } from './documents/document-detail/document-detail.component';
 import { DropdownDirective } from './dropdown.directive';
+import { AppRoutingModule } from './app-routing.module';
+import { DocumentsEditComponent } from './documents/documents-edit/documents-edit.component';
+import { ContactsEditComponent } from './contacts/contacts-edit/contacts-edit.component';
+
 
 @NgModule({
   declarations: [
@@ -32,11 +36,14 @@ import { DropdownDirective } from './dropdown.directive';
     ContactItemComponent,
     DocumentListComponent,
     DocumentItemComponent,
-    //DocumentDetailComponent,
-    DropdownDirective
+    DocumentDetailComponent,
+    DropdownDirective,
+    DocumentsEditComponent,
+    ContactsEditComponent    
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
