@@ -7,29 +7,29 @@ import { MOCKCONTACTS } from './MOCKCONTACTS';
 })
 
 export class ContactService {
-    contacts: Contact[] = [];
-
-    //contactSelectedEvent = new EventEmitter<Contact>();
+    private contacts: Contact[] = [];
     contactChangedEvent = new EventEmitter<Contact>();
+    //contactSelectedEvent = new EventEmitter<Contact>();
+ 
 
     constructor() {
         this.contacts = MOCKCONTACTS;
     }
 
     deleteContact(contact: Contact) {
-        // if (!contact) {
-        //     return;
-        // }
+         if (!contact) {
+             return;
+         }
 
-        // const pos = this.contacts.indexOf(contacts);
+         const pos = this.contacts.indexOf(contact);
 
-        // if (pos < 0) {
-        //     return;
-        // }
+         if (pos < 0) {
+             return;
+         }
 
-        // this.contacts.splice(pos, 1);
+         this.contacts.splice(pos,1);
 
-        // this.contactChangedEvent.emit(this.contacts.slice());
+         this.contactChangedEvent.emit(this.contacts.slice());
     }
 
     getContacts(): Contact[] {
@@ -39,7 +39,12 @@ export class ContactService {
     }
 
     getContact(id: string): Contact {
-        return this.contacts.find((contact) => contact.id === id);
+        for (const contact of this.contacts) {
+            if (contact.id === id) {
+                return contact;
+            }
+        }
+        return null;
     }
 
 }

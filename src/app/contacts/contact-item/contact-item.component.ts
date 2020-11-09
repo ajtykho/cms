@@ -12,7 +12,7 @@ export class ContactItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.contact);
+    
   }
 
 }
