@@ -15,6 +15,7 @@ export class DocumentService {
   constructor() { 
     this.documents=MOCKDOCUMENTS;
     this.maxDocumentId = this.getMaxId();
+    
   }
 
   getDocuments(): Document[] {
