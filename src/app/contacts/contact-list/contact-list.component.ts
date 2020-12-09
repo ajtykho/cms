@@ -30,7 +30,7 @@ export class ContactListComponent implements OnInit {
         }
       );
 
-      this.contacts = this.contactService.getContacts();
+      this.contactService.getContacts();
   }
 
   ngOnDestroy() {

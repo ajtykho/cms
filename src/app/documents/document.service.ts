@@ -9,7 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class DocumentService {
   documents: Document[] = [];
-  documentChangedEvent = new Subject<Document[]>();
+  //documentChangedEvent = new Subject<Document[]>();
   documentListChangedEvent = new Subject<Document[]>();
   maxDocumentId: number;
 
@@ -69,8 +69,8 @@ addDocument(newDocument: Document) {
   this.maxDocumentId++;
   newDocument.id = this.maxDocumentId.toString();
   this.documents.push(newDocument);
-  const documentsListClone = this.documents.slice();
-  this.documentListChangedEvent.next(documentsListClone);
+  
+  this.storeDocuments();
 }
 
 updateDocument(originalDocument: Document, newDocument: Document) {
@@ -85,8 +85,8 @@ updateDocument(originalDocument: Document, newDocument: Document) {
 
   newDocument.id = originalDocument.id;
   this.documents[pos] = newDocument;
-  const documentsListClone = this.documents.slice();
-  this.documentListChangedEvent.next(documentsListClone);
+  
+  this.storeDocuments();
 }
 
 deleteDocument(document: Document) {
@@ -101,8 +101,21 @@ deleteDocument(document: Document) {
   }
 
   this.documents.splice(pos,1);
-  const documentsListClone = this.documents.slice();
-  this.documentListChangedEvent.next(documentsListClone);
+ 
+ this.storeDocuments();
+}
+
+storeDocuments() {
+  let documents = JSON.stringify(this.documents);
+
+  const headers = new HttpHeaders({'Content-Type': 'application/json'});
+
+  this.http.put('https://cmsproject-5049d-default-rtdb.firebaseio.com/documents.json', documents, {headers: headers})
+    .subscribe(
+      () => {
+        this.documentListChangedEvent.next(this.documents.slice());
+      }
+    );
 }
 
 }
