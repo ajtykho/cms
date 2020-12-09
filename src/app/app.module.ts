@@ -20,7 +20,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { DocumentsEditComponent } from './documents/documents-edit/documents-edit.component';
 import { ContactsEditComponent } from './contacts/contacts-edit/contacts-edit.component';
 import { FormsModule } from '@angular/forms';
-
+import { ContactsFilterPipe } from './contacts/contacts-filter.pipe';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -40,12 +41,14 @@ import { FormsModule } from '@angular/forms';
     DocumentDetailComponent,
     DropdownDirective,
     DocumentsEditComponent,
-    ContactsEditComponent    
+    ContactsEditComponent,
+    ContactsFilterPipe    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -12,10 +12,15 @@ export class ContactListComponent implements OnInit {
 
   subscription: Subscription;
   contacts: Contact[] = [];
+  term: string;
 
   constructor(private contactService: ContactService) { }
 
+  search(value: string) {
 
+    this.term = value;
+    
+    }
 
   ngOnInit() {
     this.subscription = this.contactService.contactListChangedEvent
