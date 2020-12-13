@@ -37,10 +37,7 @@ app.use(cookieParser());
 
 app.use(logger('dev')); // Tell express to use the Morgan logger
 
-app.use('/', index);
-app.use('/messages', messageRoutes);
-app.use('/contacts', contactRoutes);
-app.use('/documents', documentRoutes);
+
 
 // Add support for CORS
 app.use((req, res, next) => {
@@ -55,6 +52,11 @@ app.use((req, res, next) => {
   );
   next();
 });
+
+app.use('/', index);
+app.use('/messages', messageRoutes);
+app.use('/contacts', contactRoutes);
+app.use('/documents', documentRoutes);
 
 // Tell express to use the specified director as the
 // root directory for your web site

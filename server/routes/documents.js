@@ -107,4 +107,4 @@ router.post('/', (req, res, next) => {
      });
  });
 
-//mongodb://<username>:<password>@<hostname>/test?ssl=true&authSource=admin&replicaSet=atlas-zc23r7-shard-0
+//mongodb://ajtykho:@cms/test?ssl=true&authSource=admin&replicaSet=atlas-zc23r7-shard-0

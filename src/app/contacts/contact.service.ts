@@ -21,10 +21,10 @@ export class ContactService {
     }
 
     getContacts() {
-      this.http.get('http://localhost:3000/contacts')
+      this.http.get<{ message: string, contacts: Contact[]}>('http://localhost:3000/contacts')
         .subscribe(
-          (contacts: Contact[]) => {
-            this.contacts = contacts;
+          (data) => {
+            this.contacts = data.contacts;
 
             this.maxContactId = this.getMaxId();
 

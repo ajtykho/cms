@@ -20,10 +20,10 @@ export class DocumentService {
   }
 
   getDocuments() {
-    this.http.get('http://localhost:3000/documents')
+    this.http.get<{ message: string, documents: Document[]}>('http://localhost:3000/documents')
     .subscribe(
-      (documents: Document[]) => {
-        this.documents = documents;
+      (data) => {
+        this.documents = data.documents;
 
         this.maxDocumentId = this.getMaxId();
 
@@ -60,8 +60,6 @@ getMaxId(): number {
 }
   return maxId;
 }
-
-italian
 
 addDocument(document: Document) {
   if (!document) {

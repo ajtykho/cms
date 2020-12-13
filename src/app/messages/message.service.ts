@@ -63,10 +63,10 @@ export class MessageService {
     }
 
     getMessages() {
-        this.http.get('http://localhost:3000/messages')
+        this.http.get<{ message: string, messages: Message[]}>('http://localhost:3000/messages' )
         .subscribe(
-          (messages: Message[]) => {
-            this.messages = messages;
+          (data) => {
+            this.messages = data.messages;
     
             this.maxMessageId = this.getMaxId();
     
