@@ -78,7 +78,8 @@ export class ContactService {
             (responseData) => {
               // add new contact to contacts
               this.contacts.push(responseData.contact);
-              this.sortAndSend();
+              this.contacts.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+              this.contactListChangedEvent.next(this.contacts.slice());
             }
           );
       }
@@ -96,7 +97,6 @@ export class ContactService {
       
         // set the id of the new Contact to the id of the old Contact
         newContact.id = originalContact.id;
-        newContact._id = originalContact._id;
       
         const headers = new HttpHeaders({'Content-Type': 'application/json'});
       
@@ -106,7 +106,8 @@ export class ContactService {
           .subscribe(
             (response: Response) => {
               this.contacts[pos] = newContact;
-              this.sortAndSend();
+              this.contacts.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+              this.contactListChangedEvent.next(this.contacts.slice());
             }
           );
       }
@@ -128,7 +129,8 @@ export class ContactService {
           .subscribe(
             (response: Response) => {
               this.contacts.splice(pos, 1);
-              this.sortAndSend();
+              this.contacts.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+              this.contactListChangedEvent.next(this.contacts.slice());
             }
           );
       }

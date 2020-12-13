@@ -43,7 +43,7 @@ router.post('/', (req, res, next) => {
    message.save()
      .then(createdMessage => {
        res.status(201).json({
-         message: 'Message added successfully',
+         msg: 'Message added successfully',
          message: createdMessage
        });
      })

@@ -1,10 +1,6 @@
-const sequenceGenerator = require('./sequenceGenerator');
-
-const Document = require('../models/document');
-
 const mongoose = require('mongoose');
 
-const messageSchema = mongoose.Schema({
+const documentSchema = mongoose.Schema({
    id: { type: String, required: true },
    name: { type: String, required: true  },
    description: { type: String, required: true  },

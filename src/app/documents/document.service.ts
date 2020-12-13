@@ -61,6 +61,8 @@ getMaxId(): number {
   return maxId;
 }
 
+italian
+
 addDocument(document: Document) {
   if (!document) {
     return;
@@ -79,7 +81,9 @@ addDocument(document: Document) {
       (responseData) => {
         // add new document to documents
         this.documents.push(responseData.document);
-        this.sortAndSend();
+        this.documents.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+        this.documentListChangedEvent.next(this.documents.slice());
+        
       }
     );
 }
@@ -97,7 +101,6 @@ updateDocument(originalDocument: Document, newDocument: Document) {
 
   // set the id of the new Document to the id of the old Document
   newDocument.id = originalDocument.id;
-  newDocument._id = originalDocument._id;
 
   const headers = new HttpHeaders({'Content-Type': 'application/json'});
 
@@ -107,7 +110,8 @@ updateDocument(originalDocument: Document, newDocument: Document) {
     .subscribe(
       (response: Response) => {
         this.documents[pos] = newDocument;
-        this.sortAndSend();
+        this.documents.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+        this.documentListChangedEvent.next(this.documents.slice());
       }
     );
 }
@@ -130,7 +134,8 @@ deleteDocument(document: Document) {
     .subscribe(
       (response: Response) => {
         this.documents.splice(pos, 1);
-        this.sortAndSend();
+        this.documents.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+        this.documentListChangedEvent.next(this.documents.slice());
       }
     );
 }
